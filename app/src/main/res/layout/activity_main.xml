@@ -1,75 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginBottom="16dp"
-            android:textSize="80sp"
-            android:id="@+id/text1"
-            android:textAlignment="center"
-            android:visibility="gone"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:visibility="gone">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:id="@+id/buttonMinus"
-                android:layout_weight="1"
-                android:textSize="80sp"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:id="@+id/buttonPlus"
-                android:layout_weight="1"
-                android:textSize="80sp"
-                />
-
-        </LinearLayout>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Masukkan kata-kata :)"
-            android:layout_marginTop="32dp"
-            android:id="@+id/editKata"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kirim ke Second Activity"
-            android:id="@+id/buttonKirim"
-            />
-
-    </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pindah ke SecondActivity"
-        android:id="@+id/buttonPindah"
-        android:layout_alignParentBottom="true"
+        android:text="Mbah, Minta :D"
+        android:id="@+id/mainButton"
         />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:id="@+id/mainText"
+        />
+
+</LinearLayout>
