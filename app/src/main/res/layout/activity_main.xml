@@ -30,11 +30,28 @@
         android:inputType="textPassword"
         />
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log In"
-        android:id="@+id/mainButtonLogin"
-        />
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log In"
+            android:id="@+id/mainButtonLogin"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/mainButtonRegister"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
