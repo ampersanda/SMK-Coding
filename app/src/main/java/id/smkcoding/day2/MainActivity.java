@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,6 +33,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseInstanceId
+                .getInstance()
+                .getInstanceId()
+                .addOnCompleteListener(
+                        MainActivity.this,
+                        new OnCompleteListener<InstanceIdResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("TOKEN", task.getResult().getToken());
+                                }
+                            }
+                        });
 
         auth = FirebaseAuth.getInstance();
 
@@ -49,18 +67,18 @@ public class MainActivity extends AppCompatActivity {
                         Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
                                 Pattern.CASE_INSENSITIVE);
 
-                Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailText);
+                Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailText);
 
                 // TODO : cek input
-                if (TextUtils.isEmpty(emailText)){
+                if (TextUtils.isEmpty(emailText)) {
                     // TODO : cek email
                     email.setError("Email tidak boleh kosong");
                     email.requestFocus();
-                } else if (!matcher.find()){
+                } else if (!matcher.find()) {
                     // TODO : cek email Regexp
                     email.setError("Format email salah");
                     email.requestFocus();
-                } else if (TextUtils.isEmpty(passwordText)){
+                } else if (TextUtils.isEmpty(passwordText)) {
                     // TODO : cek password
                     password.setError("Password tidak boleh kosong");
                     password.requestFocus();
@@ -71,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
                             .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         FirebaseUser user = auth.getCurrentUser();
 
-                                        if (user != null){
+                                        if (user != null) {
                                             Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
                                         } else {
                                             Toast.makeText(MainActivity.this, "Login gagal", Toast.LENGTH_SHORT).show();
