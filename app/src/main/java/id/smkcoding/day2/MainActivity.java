@@ -1,5 +1,6 @@
 package id.smkcoding.day2;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        if (auth.getCurrentUser() != null){
+            Intent intent = new Intent(MainActivity.this, ListActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         email = findViewById(R.id.mainEmailAddress);
         password = findViewById(R.id.mainPassword);
 
@@ -93,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
                                         FirebaseUser user = auth.getCurrentUser();
 
                                         if (user != null) {
-                                            Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                                            startActivity(intent);
+                                            finish();
                                         } else {
                                             Toast.makeText(MainActivity.this, "Login gagal", Toast.LENGTH_SHORT).show();
                                         }
